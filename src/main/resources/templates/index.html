@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Diplom Spring Boot</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+    
+</head>
+<body>
+    <div th:replace="layouts/header :: header"></div>
+    <div class="base">
+        <h1>Все ссылки</h1>
+        <!-- Items container -->
+<!--        <div class="items">-->
+            <div  class="items" th:each="el : ${items}">
+<!--                <ul>-->
+<!--                    <li>-->
+                        <span style="color: black">Ссылка: </span>
+                            <a class="item-short" th:href="${el.fullref}" target="_blank">
+                                <b th:text="'/'+ ${el.shortref}" />
+                            </a>
+<!--                            <p th:text="${el.short_ref}" />-->
+                            <p th:text="${el.fullref}" />
+<!--                    </li>-->
+<!--                </ul>-->
+            </div>
+<!--        </div>-->
+
+        <!-- Input form -->
+        <div class="add-ref">
+            <h1>Добавление ссылки</h1>
+            <form method="post">
+                <input type="text" name="shortref" placeholder="Cокращеная ссылка">
+                <input type="text" name="fullref" placeholder="Полная ссылка">
+                <div th:text="${error}" style="color: red"></div>
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+    </div>
+    <div th:replace="layouts/footer :: footer"></div>
+</body>
+</html>
